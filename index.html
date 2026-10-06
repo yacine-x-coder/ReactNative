@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="description"
+    content="Interactive React Native learning platform"
+  />
+
+  <title>React Native Academy</title>
+
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+
+  <div id="app">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar" id="sidebar">
+
+      <div class="sidebar-header">
+
+        <div class="logo">
+          <div class="logo-icon">⚛</div>
+
+          <div>
+            <strong>RN Academy</strong>
+            <span>React Native Course</span>
+          </div>
+        </div>
+
+        <button
+          class="icon-button sidebar-close"
+          id="sidebarClose"
+          aria-label="Close sidebar"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <!-- Progress -->
+
+      <div class="progress-box">
+
+        <div class="progress-top">
+          <span data-i18n="progress">Progress</span>
+          <strong id="progressPercent">0%</strong>
+        </div>
+
+        <div class="progress-bar">
+          <div id="progressFill"></div>
+        </div>
+
+        <small id="progressText">0 / 30 lessons</small>
+
+      </div>
+
+      <!-- Search -->
+
+      <div class="search-box">
+
+        <span>⌕</span>
+
+        <input
+          type="text"
+          id="lessonSearch"
+          data-i18n-placeholder="searchLessons"
+          placeholder="Search lessons..."
+        />
+
+      </div>
+
+      <!-- Lessons -->
+
+      <div class="lesson-list" id="lessonList"></div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+      <!-- Topbar -->
+
+      <header class="topbar">
+
+        <div class="topbar-left">
+
+          <button
+            class="icon-button menu-button"
+            id="menuButton"
+          >
+            ☰
+          </button>
+
+          <div class="breadcrumb">
+            <span>RN Academy</span>
+            <span>›</span>
+            <strong id="breadcrumbLesson">
+              Lesson 1
+            </strong>
+          </div>
+
+        </div>
+
+
+        <div class="topbar-actions">
+
+          <!-- Language -->
+
+          <div class="language-selector">
+
+            <span>🌐</span>
+
+            <select id="languageSelect">
+
+              <option value="en">
+                🇬🇧 English
+              </option>
+
+              <option value="fr">
+                🇫🇷 Français
+              </option>
+
+              <option value="ar">
+                🇩🇿 العربية
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <button
+            class="icon-button"
+            id="themeButton"
+            title="Theme"
+          >
+            ☀️
+          </button>
+
+
+          <button
+            class="icon-button"
+            id="fullscreenButton"
+            title="Fullscreen"
+          >
+            ⛶
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <!-- ================= CONTENT ================= -->
+
+      <section class="content">
+
+        <!-- Hero -->
+
+        <section class="hero">
+
+          <div class="hero-content">
+
+            <span class="hero-badge" data-i18n="interactiveLearning">
+              Interactive Learning
+            </span>
+
+            <h1 data-i18n="masterReactNative">
+              Master React Native
+            </h1>
+
+            <p data-i18n="heroDescription">
+              Learn React Native from the basics to professional app development.
+            </p>
+
+            <button
+              class="primary-button"
+              id="startButton"
+              data-i18n="startLearning"
+            >
+              Start Learning
+            </button>
+
+          </div>
+
+          <div class="hero-code">
+
+            <div>&lt;View&gt;</div>
+            <div>&nbsp;&nbsp;&lt;Text&gt;</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;Hello React Native</div>
+            <div>&nbsp;&nbsp;&lt;/Text&gt;</div>
+            <div>&lt;/View&gt;</div>
+
+          </div>
+
+        </section>
+
+
+        <!-- Stats -->
+
+        <section class="stats">
+
+          <div class="stat-card">
+
+            <strong>30</strong>
+
+            <span data-i18n="lessons">
+              Lessons
+            </span>
+
+          </div>
+
+          <div class="stat-card">
+
+            <strong>100+</strong>
+
+            <span data-i18n="questions">
+              Questions
+            </span>
+
+          </div>
+
+          <div class="stat-card">
+
+            <strong>6</strong>
+
+            <span data-i18n="projects">
+              Projects
+            </span>
+
+          </div>
+
+        </section>
+
+
+        <!-- ================= LESSON VIEWER ================= -->
+
+        <section
+          class="lesson-viewer"
+          id="lessonViewer"
+        >
+
+          <!-- Lesson Header -->
+
+          <div class="lesson-header">
+
+            <div>
+
+              <span
+                class="lesson-number"
+                id="lessonNumber"
+              >
+                Lesson 01
+              </span>
+
+              <h2 id="lessonTitle">
+                Expo Router & Navigation
+              </h2>
+
+              <p id="lessonDescription">
+                Learn how navigation works in React Native.
+              </p>
+
+            </div>
+
+            <div
+              class="lesson-status"
+              id="lessonStatus"
+            >
+              🔒
+            </div>
+
+          </div>
+
+
+          <!-- Lesson Content -->
+
+          <div id="lessonContent">
+
+            <div class="info-card">
+
+              <div class="info-icon">💡</div>
+
+              <div>
+
+                <h3 data-i18n="whatYouWillLearn">
+                  What you will learn
+                </h3>
+
+                <p id="lessonLearning">
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="learning-grid">
+
+              <div class="learning-card">
+
+                <span>📖</span>
+
+                <h3 data-i18n="explanation">
+                  Explanation
+                </h3>
+
+                <p id="lessonExplanation">
+                </p>
+
+              </div>
+
+
+              <div class="learning-card">
+
+                <span>🛠️</span>
+
+                <h3 data-i18n="whenToUse">
+                  When to use
+                </h3>
+
+                <p id="lessonWhen">
+                </p>
+
+              </div>
+
+
+              <div class="learning-card">
+
+                <span>🌍</span>
+
+                <h3 data-i18n="realWorld">
+                  Real world
+                </h3>
+
+                <p id="lessonRealWorld">
+                </p>
+
+              </div>
+
+
+              <div class="learning-card">
+
+                <span>⚠️</span>
+
+                <h3 data-i18n="commonMistakes">
+                  Common mistakes
+                </h3>
+
+                <p id="lessonMistakes">
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- ================= CODE EDITOR ================= -->
+
+          <section class="editor-section" id="editorSection">
+
+            <div class="section-title">
+
+              <div>
+
+                <span>💻</span>
+
+                <h3 data-i18n="practice">
+                  Practice
+                </h3>
+
+              </div>
+
+              <span class="file-name">
+                index.tsx
+              </span>
+
+            </div>
+
+
+            <div class="editor">
+
+              <div
+                class="line-numbers"
+                id="lineNumbers"
+              >
+                1
+              </div>
+
+              <textarea
+                id="codeEditor"
+                spellcheck="false"
+              ></textarea>
+
+            </div>
+
+
+            <div class="editor-actions">
+
+              <button
+                class="secondary-button"
+                id="copyCodeButton"
+                data-i18n="copyCode"
+              >
+                Copy Code
+              </button>
+
+              <button
+                class="primary-button"
+                id="checkCodeButton"
+                data-i18n="checkAnswer"
+              >
+                Check Answer
+              </button>
+
+            </div>
+
+
+            <div
+              class="code-result"
+              id="codeResult"
+            ></div>
+
+          </section>
+
+
+          <!-- ================= QUIZ ================= -->
+
+          <section
+            class="quiz-section"
+            id="quizSection"
+          >
+
+            <div class="section-title">
+
+              <div>
+
+                <span>🧠</span>
+
+                <h3 data-i18n="quickQuestion">
+                  Quick Question
+                </h3>
+
+              </div>
+
+            </div>
+
+
+            <div class="question-box">
+
+              <span
+                class="question-label"
+                data-i18n="question"
+              >
+                Question
+              </span>
+
+              <h3 id="questionText">
+              </h3>
+
+              <div
+                class="answers"
+                id="answers"
+              ></div>
+
+              <div
+                class="question-feedback"
+                id="questionFeedback"
+              ></div>
+
+            </div>
+
+          </section>
+
+
+          <!-- ================= CHALLENGE ================= -->
+
+          <section class="challenge">
+
+            <div class="challenge-icon">
+              🚀
+            </div>
+
+            <div class="challenge-content">
+
+              <span data-i18n="practicalChallenge">
+                Practical Challenge
+              </span>
+
+              <h3 id="challengeTitle">
+              </h3>
+
+              <p id="challengeDescription">
+              </p>
+
+              <button
+                class="secondary-button"
+                id="challengeButton"
+                data-i18n="openEditor"
+              >
+                Open Editor
+              </button>
+
+            </div>
+
+          </section>
+
+
+          <!-- ================= NAVIGATION ================= -->
+
+          <div class="lesson-navigation">
+
+            <button
+              class="secondary-button"
+              id="previousButton"
+              data-i18n="previous"
+            >
+              ← Previous
+            </button>
+
+            <button
+              class="complete-button"
+              id="completeButton"
+              data-i18n="markComplete"
+            >
+              ✓ Mark as Complete
+            </button>
+
+            <button
+              class="primary-button"
+              id="nextButton"
+              data-i18n="next"
+            >
+              Next →
+            </button>
+
+          </div>
+
+        </section>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <!-- Mobile overlay -->
+
+  <div
+    class="sidebar-overlay"
+    id="sidebarOverlay"
+  ></div>
+
+
+  <script src="index.js"></script>
+
+</body>
+</html>
