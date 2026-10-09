@@ -1,41 +1,57 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-theme="light" data-design="default">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>RN Academy</title>
+
   <meta
     name="description"
-    content="Interactive React Native learning platform"
+    content="RN Academy - Learn React Native from beginner to professional."
   />
 
-  <title>React Native Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
   <link rel="stylesheet" href="index.css" />
 </head>
 
 <body>
 
+  <!-- =========================================
+       APP
+  ========================================== -->
+
   <div id="app">
 
-    <!-- ================= SIDEBAR ================= -->
+    <!-- =======================================
+         SIDEBAR
+    ======================================== -->
 
-    <aside class="sidebar" id="sidebar">
+    <aside id="sidebar" class="sidebar">
 
-      <div class="sidebar-header">
+      <div class="sidebar-top">
 
-        <div class="logo">
-          <div class="logo-icon">⚛</div>
+        <div class="brand">
+          <div class="brand-logo">RN</div>
 
-          <div>
+          <div class="brand-text">
             <strong>RN Academy</strong>
-            <span>React Native Course</span>
+            <span data-i18n="brandSubtitle">
+              React Native Learning
+            </span>
           </div>
         </div>
 
         <button
-          class="icon-button sidebar-close"
-          id="sidebarClose"
+          id="closeSidebar"
+          class="icon-button mobile-only"
           aria-label="Close sidebar"
         >
           ×
@@ -43,93 +59,696 @@
 
       </div>
 
-      <!-- Progress -->
+      <div class="sidebar-progress">
 
-      <div class="progress-box">
-
-        <div class="progress-top">
+        <div class="progress-header">
           <span data-i18n="progress">Progress</span>
           <strong id="progressPercent">0%</strong>
         </div>
 
-        <div class="progress-bar">
-          <div id="progressFill"></div>
+        <div class="progress-track">
+          <div id="progressBar" class="progress-fill"></div>
         </div>
 
-        <small id="progressText">0 / 30 lessons</small>
+        <small id="progressText">
+          0 / 0 lessons completed
+        </small>
 
       </div>
 
-      <!-- Search -->
+      <div class="search-wrapper">
 
-      <div class="search-box">
-
-        <span>⌕</span>
+        <span class="search-icon">⌕</span>
 
         <input
-          type="text"
           id="lessonSearch"
+          type="search"
           data-i18n-placeholder="searchLessons"
           placeholder="Search lessons..."
         />
 
       </div>
 
-      <!-- Lessons -->
+      <div class="lesson-filter-row">
 
-      <div class="lesson-list" id="lessonList"></div>
+        <button
+          class="filter-button active"
+          data-filter="all"
+          data-i18n="all"
+        >
+          All
+        </button>
+
+        <button
+          class="filter-button"
+          data-filter="beginner"
+          data-i18n="beginner"
+        >
+          Beginner
+        </button>
+
+        <button
+          class="filter-button"
+          data-filter="intermediate"
+          data-i18n="intermediate"
+        >
+          Intermediate
+        </button>
+
+        <button
+          class="filter-button"
+          data-filter="advanced"
+          data-i18n="advanced"
+        >
+          Advanced
+        </button>
+
+      </div>
+
+      <nav id="lessonList" class="lesson-list"></nav>
+
+      <div class="sidebar-bottom">
+
+        <button id="openSettings" class="sidebar-action">
+          <span>⚙</span>
+          <span data-i18n="settings">Settings</span>
+        </button>
+
+        <button id="openMusic" class="sidebar-action">
+          <span>♫</span>
+          <span data-i18n="focusMusic">Focus Music</span>
+        </button>
+
+      </div>
 
     </aside>
 
 
-    <!-- ================= MAIN ================= -->
+    <!-- =======================================
+         MAIN PAGE
+    ======================================== -->
 
-    <main class="main">
+    <div class="page">
 
-      <!-- Topbar -->
+      <!-- HEADER -->
 
       <header class="topbar">
 
         <div class="topbar-left">
 
           <button
-            class="icon-button menu-button"
-            id="menuButton"
+            id="openSidebar"
+            class="icon-button"
+            aria-label="Open sidebar"
           >
             ☰
           </button>
 
           <div class="breadcrumb">
             <span>RN Academy</span>
-            <span>›</span>
-            <strong id="breadcrumbLesson">
-              Lesson 1
-            </strong>
+            <span>/</span>
+            <strong id="breadcrumbCurrent">Home</strong>
+          </div>
+
+        </div>
+
+        <div class="topbar-actions">
+
+          <button
+            id="quickMusic"
+            class="top-action"
+            title="Focus music"
+          >
+            ♫
+          </button>
+
+          <button
+            id="themeToggle"
+            class="top-action"
+            title="Toggle theme"
+          >
+            ☾
+          </button>
+
+          <button
+            id="fullscreenButton"
+            class="top-action"
+            title="Fullscreen"
+          >
+            ⛶
+          </button>
+
+          <button
+            id="settingsButton"
+            class="top-action"
+            title="Settings"
+          >
+            ⚙
+          </button>
+
+          <select id="languageSelect" class="language-select">
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="ar">العربية</option>
+          </select>
+
+        </div>
+
+      </header>
+
+
+      <!-- MAIN -->
+
+      <main>
+
+        <!-- ===================================
+             HOME
+        ==================================== -->
+
+        <section id="homeView" class="home-view">
+
+          <div class="hero">
+
+            <div class="hero-grid"></div>
+
+            <div class="hero-content">
+
+              <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                <span data-i18n="heroBadge">
+                  Modern React Native Academy
+                </span>
+              </div>
+
+              <h1>
+                <span data-i18n="heroTitle1">Master</span>
+                <span class="gradient-text">React Native</span>
+              </h1>
+
+              <p data-i18n="heroDescription">
+                Learn React Native from the fundamentals to professional
+                application development with practical examples, exercises,
+                quizzes and projects.
+              </p>
+
+              <div class="hero-actions">
+
+                <button id="startLearning" class="primary-button">
+                  <span data-i18n="startLearning">Start Learning</span>
+                  <span>→</span>
+                </button>
+
+                <button id="continueLearning" class="secondary-button">
+                  <span data-i18n="continueLearning">
+                    Continue Learning
+                  </span>
+                </button>
+
+              </div>
+
+              <div class="hero-features">
+
+                <span>✓ <span data-i18n="feature1">Detailed lessons</span></span>
+                <span>✓ <span data-i18n="feature2">Real examples</span></span>
+                <span>✓ <span data-i18n="feature3">Challenges</span></span>
+                <span>✓ <span data-i18n="feature4">Professional topics</span></span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- STATS -->
+
+          <div class="stats-grid">
+
+            <div class="stat-card">
+              <strong id="lessonCount">0</strong>
+              <span data-i18n="lessons">Lessons</span>
+            </div>
+
+            <div class="stat-card">
+              <strong id="exampleCount">0</strong>
+              <span data-i18n="examples">Examples</span>
+            </div>
+
+            <div class="stat-card">
+              <strong id="questionCount">0</strong>
+              <span data-i18n="questions">Questions</span>
+            </div>
+
+            <div class="stat-card">
+              <strong>8+</strong>
+              <span data-i18n="projects">Projects</span>
+            </div>
+
+          </div>
+
+
+          <!-- FEATURES -->
+
+          <article class="home-content">
+
+            <h2 data-i18n="whyTitle">
+              Why RN Academy?
+            </h2>
+
+            <p data-i18n="whyDescription">
+              RN Academy is designed like a modern documentation platform:
+              explanation first, then examples, code analysis, practice,
+              quizzes and challenges.
+            </p>
+
+            <div class="home-columns">
+
+              <div>
+                <h3>01 — <span data-i18n="learnByDoing">Learn by doing</span></h3>
+                <p data-i18n="learnByDoingText">
+                  Every concept is connected to practical code.
+                </p>
+              </div>
+
+              <div>
+                <h3>02 — <span data-i18n="fromZero">From zero to professional</span></h3>
+                <p data-i18n="fromZeroText">
+                  Start with View and Text and eventually reach APIs,
+                  navigation, storage, animation and production.
+                </p>
+              </div>
+
+              <div>
+                <h3>03 — <span data-i18n="practice">Practice</span></h3>
+                <p data-i18n="practiceText">
+                  Test yourself with questions and challenges.
+                </p>
+              </div>
+
+            </div>
+
+          </article>
+
+        </section>
+
+
+        <!-- ===================================
+             LESSON VIEW
+        ==================================== -->
+
+        <article id="lessonView" class="lesson-view hidden">
+
+          <div class="lesson-header">
+
+            <div>
+
+              <div class="lesson-meta">
+
+                <span id="lessonModule" class="module-label">
+                  Core Components
+                </span>
+
+                <span id="lessonDifficulty" class="difficulty-label">
+                  Beginner
+                </span>
+
+                <span id="lessonDuration" class="duration-label">
+                  8 min
+                </span>
+
+              </div>
+
+              <h1 id="lessonTitle">
+                View
+              </h1>
+
+              <p id="lessonDescription">
+                Learn how View works.
+              </p>
+
+            </div>
+
+            <button id="completeLesson" class="complete-button">
+              ✓
+              <span data-i18n="completeLesson">
+                Complete
+              </span>
+            </button>
+
+          </div>
+
+
+          <div class="lesson-layout">
+
+            <!-- ARTICLE -->
+
+            <div id="lessonArticle" class="lesson-article"></div>
+
+            <!-- TABLE OF CONTENT -->
+
+            <aside class="lesson-toc">
+
+              <h3 data-i18n="onThisPage">
+                On this page
+              </h3>
+
+              <nav id="lessonToc"></nav>
+
+            </aside>
+
+          </div>
+
+
+          <!-- NAVIGATION -->
+
+          <div class="lesson-navigation">
+
+            <button id="previousLesson" class="nav-button">
+              ←
+              <span data-i18n="previous">Previous</span>
+            </button>
+
+            <button id="nextLesson" class="nav-button primary">
+              <span data-i18n="next">Next</span>
+              →
+            </button>
+
+          </div>
+
+        </article>
+
+      </main>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================
+       SETTINGS MODAL
+  ========================================== -->
+
+  <div id="settingsOverlay" class="modal-overlay hidden">
+
+    <div class="settings-modal">
+
+      <div class="modal-header">
+
+        <div>
+          <span class="modal-kicker">RN Academy</span>
+          <h2 data-i18n="settings">Settings</h2>
+        </div>
+
+        <button id="closeSettings" class="close-button">
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="settings-body">
+
+        <!-- APPEARANCE -->
+
+        <div class="settings-group">
+
+          <div class="settings-group-title">
+            <span>🎨</span>
+
+            <div>
+              <h3 data-i18n="appearance">Appearance</h3>
+              <p data-i18n="appearanceDesc">
+                Change how RN Academy looks.
+              </p>
+            </div>
+          </div>
+
+
+          <div class="setting-item">
+
+            <div>
+              <strong data-i18n="theme">Theme</strong>
+              <small data-i18n="themeDesc">
+                Choose light or dark mode.
+              </small>
+            </div>
+
+            <div class="segmented-control">
+
+              <button data-theme-choice="light">
+                ☀ <span data-i18n="light">Light</span>
+              </button>
+
+              <button data-theme-choice="dark">
+                ☾ <span data-i18n="dark">Dark</span>
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="setting-item vertical">
+
+            <div>
+              <strong data-i18n="siteDesign">Site Design</strong>
+              <small data-i18n="siteDesignDesc">
+                This changes the complete visual personality of the website.
+              </small>
+            </div>
+
+            <div class="design-grid">
+
+              <button
+                class="design-option"
+                data-design-choice="simple"
+              >
+                <div class="design-preview simple-preview">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+
+                <strong data-i18n="designSimple">
+                  Simple
+                </strong>
+
+                <small data-i18n="designSimpleDesc">
+                  Clean and calm.
+                </small>
+              </button>
+
+
+              <button
+                class="design-option active"
+                data-design-choice="default"
+              >
+                <div class="design-preview default-preview">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+
+                <strong data-i18n="designDefault">
+                  Default
+                </strong>
+
+                <small data-i18n="designDefaultDesc">
+                  Balanced and modern.
+                </small>
+              </button>
+
+
+              <button
+                class="design-option"
+                data-design-choice="pro"
+              >
+                <div class="design-preview pro-preview">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+
+                <strong data-i18n="designPro">
+                  Pro Motion
+                </strong>
+
+                <small data-i18n="designProDesc">
+                  Everything moves.
+                </small>
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="setting-item">
+
+            <div>
+              <strong data-i18n="fontSize">Font Size</strong>
+              <small data-i18n="fontSizeDesc">
+                Adjust reading size.
+              </small>
+            </div>
+
+            <div class="range-control">
+
+              <span>A</span>
+
+              <input
+                id="fontSizeRange"
+                type="range"
+                min="90"
+                max="120"
+                value="100"
+              />
+
+              <span>A+</span>
+
+            </div>
+
+          </div>
+
+
+          <div class="setting-item">
+
+            <div>
+              <strong data-i18n="density">Interface Density</strong>
+              <small data-i18n="densityDesc">
+                Control spacing throughout the site.
+              </small>
+            </div>
+
+            <select id="densitySelect">
+
+              <option value="compact" data-i18n="compact">
+                Compact
+              </option>
+
+              <option value="comfortable" data-i18n="comfortable">
+                Comfortable
+              </option>
+
+              <option value="spacious" data-i18n="spacious">
+                Spacious
+              </option>
+
+            </select>
+
           </div>
 
         </div>
 
 
-        <div class="topbar-actions">
+        <!-- LANGUAGE -->
 
-          <!-- Language -->
+        <div class="settings-group">
 
-          <div class="language-selector">
-
+          <div class="settings-group-title">
             <span>🌐</span>
 
-            <select id="languageSelect">
+            <div>
+              <h3 data-i18n="languageAndDirection">
+                Language & Direction
+              </h3>
 
-              <option value="en">
-                🇬🇧 English
+              <p data-i18n="languageDesc">
+                Choose the language and reading direction.
+              </p>
+            </div>
+          </div>
+
+
+          <div class="setting-item">
+
+            <div>
+              <strong data-i18n="language">Language</strong>
+            </div>
+
+            <select id="settingsLanguage">
+
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="ar">العربية</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="setting-item">
+
+            <div>
+              <strong>RTL / LTR</strong>
+
+              <small data-i18n="directionDesc">
+                Let the language control direction or choose manually.
+              </small>
+            </div>
+
+            <select id="directionSelect">
+
+              <option value="auto" data-i18n="automatic">
+                Automatic
               </option>
 
-              <option value="fr">
-                🇫🇷 Français
+              <option value="ltr">
+                LTR
               </option>
 
-              <option value="ar">
-                🇩🇿 العربية
+              <option value="rtl">
+                RTL
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <!-- ANIMATION -->
+
+        <div class="settings-group">
+
+          <div class="settings-group-title">
+            <span>✨</span>
+
+            <div>
+              <h3 data-i18n="animation">Animation</h3>
+
+              <p data-i18n="animationDesc">
+                Control movement and transitions.
+              </p>
+            </div>
+          </div>
+
+
+          <div class="setting-item">
+
+            <div>
+              <strong data-i18n="animationLevel">
+                Animation Level
+              </strong>
+
+              <small data-i18n="animationLevelDesc">
+                Choose how animated the interface should be.
+              </small>
+            </div>
+
+            <select id="animationSelect">
+
+              <option value="off" data-i18n="animationOff">
+                Off
+              </option>
+
+              <option value="reduced" data-i18n="animationReduced">
+                Reduced
+              </option>
+
+              <option value="full" data-i18n="animationFull">
+                Full
               </option>
 
             </select>
@@ -137,430 +756,251 @@
           </div>
 
 
-          <button
-            class="icon-button"
-            id="themeButton"
-            title="Theme"
-          >
-            ☀️
-          </button>
+          <div class="setting-item switch-row">
 
+            <div>
+              <strong data-i18n="autoAnimations">
+                Pro Motion Effects
+              </strong>
 
-          <button
-            class="icon-button"
-            id="fullscreenButton"
-            title="Fullscreen"
-          >
-            ⛶
-          </button>
+              <small data-i18n="autoAnimationsDesc">
+                Enable extra movement when Pro Motion is active.
+              </small>
+            </div>
+
+            <label class="switch">
+
+              <input
+                id="proMotionToggle"
+                type="checkbox"
+              />
+
+              <span></span>
+
+            </label>
+
+          </div>
 
         </div>
 
-      </header>
 
+        <!-- LEARNING -->
 
-      <!-- ================= CONTENT ================= -->
+        <div class="settings-group">
 
-      <section class="content">
-
-        <!-- Hero -->
-
-        <section class="hero">
-
-          <div class="hero-content">
-
-            <span class="hero-badge" data-i18n="interactiveLearning">
-              Interactive Learning
-            </span>
-
-            <h1 data-i18n="masterReactNative">
-              Master React Native
-            </h1>
-
-            <p data-i18n="heroDescription">
-              Learn React Native from the basics to professional app development.
-            </p>
-
-            <button
-              class="primary-button"
-              id="startButton"
-              data-i18n="startLearning"
-            >
-              Start Learning
-            </button>
-
-          </div>
-
-          <div class="hero-code">
-
-            <div>&lt;View&gt;</div>
-            <div>&nbsp;&nbsp;&lt;Text&gt;</div>
-            <div>&nbsp;&nbsp;&nbsp;&nbsp;Hello React Native</div>
-            <div>&nbsp;&nbsp;&lt;/Text&gt;</div>
-            <div>&lt;/View&gt;</div>
-
-          </div>
-
-        </section>
-
-
-        <!-- Stats -->
-
-        <section class="stats">
-
-          <div class="stat-card">
-
-            <strong>30</strong>
-
-            <span data-i18n="lessons">
-              Lessons
-            </span>
-
-          </div>
-
-          <div class="stat-card">
-
-            <strong>100+</strong>
-
-            <span data-i18n="questions">
-              Questions
-            </span>
-
-          </div>
-
-          <div class="stat-card">
-
-            <strong>6</strong>
-
-            <span data-i18n="projects">
-              Projects
-            </span>
-
-          </div>
-
-        </section>
-
-
-        <!-- ================= LESSON VIEWER ================= -->
-
-        <section
-          class="lesson-viewer"
-          id="lessonViewer"
-        >
-
-          <!-- Lesson Header -->
-
-          <div class="lesson-header">
+          <div class="settings-group-title">
+            <span>📚</span>
 
             <div>
+              <h3 data-i18n="learning">Learning</h3>
 
-              <span
-                class="lesson-number"
-                id="lessonNumber"
-              >
-                Lesson 01
-              </span>
-
-              <h2 id="lessonTitle">
-                Expo Router & Navigation
-              </h2>
-
-              <p id="lessonDescription">
-                Learn how navigation works in React Native.
+              <p data-i18n="learningDesc">
+                Customize your learning experience.
               </p>
-
-            </div>
-
-            <div
-              class="lesson-status"
-              id="lessonStatus"
-            >
-              🔒
             </div>
 
           </div>
 
 
-          <!-- Lesson Content -->
+          <div class="setting-item switch-row">
 
-          <div id="lessonContent">
+            <div>
+              <strong data-i18n="showToc">
+                Show lesson table of contents
+              </strong>
 
-            <div class="info-card">
-
-              <div class="info-icon">💡</div>
-
-              <div>
-
-                <h3 data-i18n="whatYouWillLearn">
-                  What you will learn
-                </h3>
-
-                <p id="lessonLearning">
-                </p>
-
-              </div>
-
+              <small data-i18n="showTocDesc">
+                Display the lesson navigation on the right.
+              </small>
             </div>
 
+            <label class="switch">
 
-            <div class="learning-grid">
+              <input
+                id="tocToggle"
+                type="checkbox"
+                checked
+              />
 
-              <div class="learning-card">
+              <span></span>
 
-                <span>📖</span>
-
-                <h3 data-i18n="explanation">
-                  Explanation
-                </h3>
-
-                <p id="lessonExplanation">
-                </p>
-
-              </div>
-
-
-              <div class="learning-card">
-
-                <span>🛠️</span>
-
-                <h3 data-i18n="whenToUse">
-                  When to use
-                </h3>
-
-                <p id="lessonWhen">
-                </p>
-
-              </div>
-
-
-              <div class="learning-card">
-
-                <span>🌍</span>
-
-                <h3 data-i18n="realWorld">
-                  Real world
-                </h3>
-
-                <p id="lessonRealWorld">
-                </p>
-
-              </div>
-
-
-              <div class="learning-card">
-
-                <span>⚠️</span>
-
-                <h3 data-i18n="commonMistakes">
-                  Common mistakes
-                </h3>
-
-                <p id="lessonMistakes">
-                </p>
-
-              </div>
-
-            </div>
+            </label>
 
           </div>
 
 
-          <!-- ================= CODE EDITOR ================= -->
+          <div class="setting-item switch-row">
 
-          <section class="editor-section" id="editorSection">
+            <div>
+              <strong data-i18n="rememberLesson">
+                Remember current lesson
+              </strong>
 
-            <div class="section-title">
-
-              <div>
-
-                <span>💻</span>
-
-                <h3 data-i18n="practice">
-                  Practice
-                </h3>
-
-              </div>
-
-              <span class="file-name">
-                index.tsx
-              </span>
-
+              <small data-i18n="rememberLessonDesc">
+                Return to your latest lesson when you come back.
+              </small>
             </div>
 
+            <label class="switch">
 
-            <div class="editor">
+              <input
+                id="rememberLessonToggle"
+                type="checkbox"
+                checked
+              />
 
-              <div
-                class="line-numbers"
-                id="lineNumbers"
-              >
-                1
-              </div>
+              <span></span>
 
-              <textarea
-                id="codeEditor"
-                spellcheck="false"
-              ></textarea>
+            </label>
 
-            </div>
+          </div>
 
-
-            <div class="editor-actions">
-
-              <button
-                class="secondary-button"
-                id="copyCodeButton"
-                data-i18n="copyCode"
-              >
-                Copy Code
-              </button>
-
-              <button
-                class="primary-button"
-                id="checkCodeButton"
-                data-i18n="checkAnswer"
-              >
-                Check Answer
-              </button>
-
-            </div>
+        </div>
 
 
-            <div
-              class="code-result"
-              id="codeResult"
-            ></div>
+        <!-- MUSIC -->
 
-          </section>
+        <div class="settings-group">
 
+          <div class="settings-group-title">
+            <span>🎵</span>
 
-          <!-- ================= QUIZ ================= -->
+            <div>
+              <h3 data-i18n="focusMusic">Focus Music</h3>
 
-          <section
-            class="quiz-section"
-            id="quizSection"
-          >
-
-            <div class="section-title">
-
-              <div>
-
-                <span>🧠</span>
-
-                <h3 data-i18n="quickQuestion">
-                  Quick Question
-                </h3>
-
-              </div>
-
-            </div>
-
-
-            <div class="question-box">
-
-              <span
-                class="question-label"
-                data-i18n="question"
-              >
-                Question
-              </span>
-
-              <h3 id="questionText">
-              </h3>
-
-              <div
-                class="answers"
-                id="answers"
-              ></div>
-
-              <div
-                class="question-feedback"
-                id="questionFeedback"
-              ></div>
-
-            </div>
-
-          </section>
-
-
-          <!-- ================= CHALLENGE ================= -->
-
-          <section class="challenge">
-
-            <div class="challenge-icon">
-              🚀
-            </div>
-
-            <div class="challenge-content">
-
-              <span data-i18n="practicalChallenge">
-                Practical Challenge
-              </span>
-
-              <h3 id="challengeTitle">
-              </h3>
-
-              <p id="challengeDescription">
+              <p data-i18n="musicDesc">
+                A soft generated ambient sound for concentration.
               </p>
+            </div>
+          </div>
 
-              <button
-                class="secondary-button"
-                id="challengeButton"
-                data-i18n="openEditor"
-              >
-                Open Editor
-              </button>
 
+          <div class="setting-item switch-row">
+
+            <div>
+              <strong data-i18n="musicEnabled">
+                Focus music
+              </strong>
             </div>
 
-          </section>
+            <label class="switch">
 
+              <input
+                id="musicToggle"
+                type="checkbox"
+              />
 
-          <!-- ================= NAVIGATION ================= -->
+              <span></span>
 
-          <div class="lesson-navigation">
-
-            <button
-              class="secondary-button"
-              id="previousButton"
-              data-i18n="previous"
-            >
-              ← Previous
-            </button>
-
-            <button
-              class="complete-button"
-              id="completeButton"
-              data-i18n="markComplete"
-            >
-              ✓ Mark as Complete
-            </button>
-
-            <button
-              class="primary-button"
-              id="nextButton"
-              data-i18n="next"
-            >
-              Next →
-            </button>
+            </label>
 
           </div>
 
-        </section>
 
-      </section>
+          <div class="setting-item">
 
-    </main>
+            <div>
+              <strong data-i18n="volume">
+                Volume
+              </strong>
+            </div>
+
+            <input
+              id="musicVolume"
+              type="range"
+              min="0"
+              max="100"
+              value="30"
+            />
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="modal-footer">
+
+        <button
+          id="resetSettings"
+          class="danger-button"
+          data-i18n="resetSettings"
+        >
+          Reset Settings
+        </button>
+
+        <button
+          id="doneSettings"
+          class="primary-button"
+          data-i18n="done"
+        >
+          Done
+        </button>
+
+      </div>
+
+    </div>
 
   </div>
 
 
-  <!-- Mobile overlay -->
+  <!-- =========================================
+       MUSIC PANEL
+  ========================================== -->
 
-  <div
-    class="sidebar-overlay"
-    id="sidebarOverlay"
-  ></div>
+  <div id="musicPanel" class="music-panel hidden">
+
+    <div class="music-header">
+
+      <div>
+        <strong data-i18n="focusMusic">
+          Focus Music
+        </strong>
+
+        <small data-i18n="musicDesc">
+          Soft ambient sound
+        </small>
+      </div>
+
+      <button id="closeMusic" class="close-button">
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="music-visualizer">
+
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+
+    <button id="musicPlay" class="music-play-button">
+      ▶
+    </button>
+
+    <input
+      id="panelVolume"
+      type="range"
+      min="0"
+      max="100"
+      value="30"
+    />
+
+  </div>
+
+
+  <!-- TOAST -->
+
+  <div id="toast" class="toast"></div>
 
 
   <script src="index.js"></script>
